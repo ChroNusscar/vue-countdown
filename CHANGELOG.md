@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.0.1 (Sep 6, 2018)
+
+- Fixed the issue of incorrect countdown end condition (#24).
+
 ## 1.0.0 (Jun 20, 2018)
 
 - Refactor the source code.

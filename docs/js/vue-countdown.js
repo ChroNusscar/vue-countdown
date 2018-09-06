@@ -1,11 +1,11 @@
 /*!
- * vue-countdown v1.0.0
+ * vue-countdown v1.0.1
  * https://xkeshi.github.io/vue-countdown
  *
  * Copyright 2017-present Chen Fengyuan
  * Released under the MIT license
  *
- * Date: 2018-06-20T03:25:59.583Z
+ * Date: 2018-09-06T13:42:33.119Z
  */
 
 (function (global, factory) {
@@ -18,10 +18,8 @@
   var MILLISECONDS_MINUTE = 60 * MILLISECONDS_SECOND;
   var MILLISECONDS_HOUR = 60 * MILLISECONDS_MINUTE;
   var MILLISECONDS_DAY = 24 * MILLISECONDS_HOUR;
-
   var index = {
     name: 'countdown',
-
     data: function data() {
       return {
         /**
@@ -43,8 +41,6 @@
         endTime: 0
       };
     },
-
-
     props: {
       /**
        * Start to countdown automatically when initialized.
@@ -107,7 +103,6 @@
         default: 'span'
       }
     },
-
     computed: {
       /**
        * Remaining days.
@@ -117,7 +112,6 @@
         return Math.floor(this.count / MILLISECONDS_DAY);
       },
 
-
       /**
        * Remaining hours.
        * @returns {number}
@@ -125,7 +119,6 @@
       hours: function hours() {
         return Math.floor(this.count % MILLISECONDS_DAY / MILLISECONDS_HOUR);
       },
-
 
       /**
        * Remaining minutes.
@@ -135,27 +128,28 @@
         return Math.floor(this.count % MILLISECONDS_HOUR / MILLISECONDS_MINUTE);
       },
 
-
       /**
        * Remaining seconds.
        * @returns {number}
        */
       seconds: function seconds() {
         var interval = this.interval;
-
         var seconds = this.count % MILLISECONDS_MINUTE / MILLISECONDS_SECOND;
 
         if (interval < 10) {
           return parseFloat(seconds.toFixed(3));
-        } else if (interval >= 10 && interval < 100) {
+        }
+
+        if (interval >= 10 && interval < 100) {
           return parseFloat(seconds.toFixed(2));
-        } else if (interval >= 100 && interval < 1000) {
+        }
+
+        if (interval >= 100 && interval < 1000) {
           return parseFloat(seconds.toFixed(1));
         }
 
         return Math.floor(seconds);
       },
-
 
       /**
        * Total remaining days.
@@ -165,7 +159,6 @@
         return this.days;
       },
 
-
       /**
        * Total remaining hours.
        * @returns {number}
@@ -173,7 +166,6 @@
       totalHours: function totalHours() {
         return Math.floor(this.count / MILLISECONDS_HOUR);
       },
-
 
       /**
        * Total remaining minutes.
@@ -183,33 +175,34 @@
         return Math.floor(this.count / MILLISECONDS_MINUTE);
       },
 
-
       /**
        * Total remaining seconds.
        * @returns {number}
        */
       totalSeconds: function totalSeconds() {
         var interval = this.interval;
-
         var seconds = this.count / MILLISECONDS_SECOND;
 
         if (interval < 10) {
           return parseFloat(seconds.toFixed(3));
-        } else if (interval >= 10 && interval < 100) {
+        }
+
+        if (interval >= 10 && interval < 100) {
           return parseFloat(seconds.toFixed(2));
-        } else if (interval >= 100 && interval < 1000) {
+        }
+
+        if (interval >= 100 && interval < 1000) {
           return parseFloat(seconds.toFixed(1));
         }
 
         return Math.floor(seconds);
       }
     },
-
     render: function render(createElement) {
       var _this = this;
 
       var preprocess = function preprocess(value) {
-        return _this.leadingZero && value < 10 ? '0' + value : value;
+        return _this.leadingZero && value < 10 ? "0".concat(value) : value;
       };
 
       return createElement(this.tag, this.$scopedSlots.default ? [this.$scopedSlots.default({
@@ -223,8 +216,6 @@
         totalSeconds: preprocess(this.totalSeconds)
       })] : this.$slots.default);
     },
-
-
     methods: {
       /**
        * Initialize count.
@@ -233,7 +224,6 @@
         var _this2 = this;
 
         var time = this.time;
-
 
         if (time > 0) {
           this.count = time;
@@ -246,7 +236,6 @@
           }
         }
       },
-
 
       /**
        * Start to countdown.
@@ -270,7 +259,6 @@
         this.next();
       },
 
-
       /**
        * Pause countdown.
        * @public
@@ -293,7 +281,6 @@
         clearTimeout(this.timeout);
       },
 
-
       /**
        * Next countdown queue.
        * @private
@@ -301,7 +288,6 @@
       next: function next() {
         this.timeout = setTimeout(this.step.bind(this), this.interval);
       },
-
 
       /**
        * Step to countdown.
@@ -313,7 +299,7 @@
           return;
         }
 
-        if (this.count > 0) {
+        if (this.count > this.interval) {
           this.count -= this.interval;
 
           if (this.emitEvents && this.count > 0) {
@@ -340,7 +326,6 @@
         }
       },
 
-
       /**
        * Stop the countdown.
        * @public
@@ -360,7 +345,6 @@
         }
       },
 
-
       /**
        * Update the count.
        * @private
@@ -371,13 +355,11 @@
         }
       }
     },
-
     watch: {
       time: function time() {
         this.init();
       }
     },
-
     created: function created() {
       this.init();
     },

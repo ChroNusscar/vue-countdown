@@ -126,7 +126,7 @@ The tag name of the component's root element.
 Start the countdown.
 
 ```html
-<countdown v-bind:auto-start="false" ref="countdown"></countdown>
+<countdown :auto-start="false" ref="countdown"></countdown>
 ```
 
 ```js
@@ -156,6 +156,7 @@ export default {
 ### stop
 
 Stop the countdown.
+
 ```html
 <countdown ref="countdown"></countdown>
 ```
@@ -185,7 +186,7 @@ This event fires when the countdown is paused.
 This event fires when the countdown is in progress.
 
 ```html
-<countdown v-on:countdownprogress="handleCountdownProgress"></countdown>
+<countdown @countdownprogress="handleCountdownProgress"></countdown>
 ```
 
 ```js
