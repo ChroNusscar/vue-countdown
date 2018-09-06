@@ -122,9 +122,13 @@ export default {
 
       if (interval < 10) {
         return parseFloat(seconds.toFixed(3));
-      } else if (interval >= 10 && interval < 100) {
+      }
+
+      if (interval >= 10 && interval < 100) {
         return parseFloat(seconds.toFixed(2));
-      } else if (interval >= 100 && interval < 1000) {
+      }
+
+      if (interval >= 100 && interval < 1000) {
         return parseFloat(seconds.toFixed(1));
       }
 
@@ -165,9 +169,13 @@ export default {
 
       if (interval < 10) {
         return parseFloat(seconds.toFixed(3));
-      } else if (interval >= 10 && interval < 100) {
+      }
+
+      if (interval >= 10 && interval < 100) {
         return parseFloat(seconds.toFixed(2));
-      } else if (interval >= 100 && interval < 1000) {
+      }
+
+      if (interval >= 100 && interval < 1000) {
         return parseFloat(seconds.toFixed(1));
       }
 
